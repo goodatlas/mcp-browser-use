@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  mcp-browser-use:
+    container_name: mcp-browser-use
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - MCP_MODEL_PROVIDER=anthropic
+      - MCP_MODEL_NAME=claude-3-7-sonnet-latest
+      - MCP_TEMPERATURE=0.7
+      - MCP_MAX_STEPS=50
+      - MCP_USE_VISION=true
+    restart: unless-stopped
